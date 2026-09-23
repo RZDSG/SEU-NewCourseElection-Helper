@@ -10,10 +10,10 @@ jobs:
   Grab:
     runs-on: windows-latest
     if: github.event.repository.owner.id == github.event.sender.id
-    
+
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
@@ -23,6 +23,7 @@ jobs:
         PASSWORD: ${{ secrets.PASSWORD }}
         TURN: ${{ secrets.TURN }}
         CLASS: ${{ secrets.class }}
+        PYTHONIOENCODING: utf-8
       run: |
         bash Init_Building_Dependencies.sh
-        python3 东南大学选课助手.py
+        python3 compat_run.py
